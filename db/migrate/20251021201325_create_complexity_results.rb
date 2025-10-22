@@ -2,7 +2,7 @@ class CreateComplexityResults < ActiveRecord::Migration[8.0]
   def change
     create_table :complexity_results do |t|
       t.string :job_id, null: false
-      t.string :status, null: false
+      t.integer :status, null: false, default: 0
       t.json :result
       t.timestamps
     end

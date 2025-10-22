@@ -13,7 +13,7 @@
 ActiveRecord::Schema[8.0].define(version: 2025_10_21_201325) do
   create_table "complexity_results", force: :cascade do |t|
     t.string "job_id", null: false
-    t.string "status", null: false
+    t.integer "status", default: 0, null: false
     t.json "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
