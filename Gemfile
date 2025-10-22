@@ -11,6 +11,7 @@ gem "bootsnap", require: false
 gem "thruster", require: false
 gem 'faraday'
 gem 'dotenv'
+gem 'dry-monads'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

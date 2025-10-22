@@ -4,7 +4,7 @@ class ComplexityResultsController < ApplicationController
 
     complexity_result = ComplexityResult.create(job_id: SecureRandom.uuid)
 
-    CalculateComplexityJob.perform_later(words, complexity_result.id)
+    CalculateComplexityJob.perform(words, complexity_result.id)
     
     render json: { job_id: complexity_result.job_id }, status: :ok
   rescue ActionController::ParameterMissing => e
@@ -14,6 +14,6 @@ class ComplexityResultsController < ApplicationController
   private 
 
   def words_param
-    params.require(:words)
+    words = params.require(:words)
   end
 end
