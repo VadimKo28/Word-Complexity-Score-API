@@ -4,7 +4,7 @@ class CalculateComplexityJob < ApplicationJob
   def perform(words, complexity_result_id)
     @data = {}
 
-    definitions = get_definitions(words)
+    get_definitions(words)
 
     update_result_to_db(complexity_result_id, :completed, @data)
   end

@@ -12,11 +12,18 @@ gem "thruster", require: false
 gem 'faraday'
 gem 'dotenv'
 gem 'dry-monads'
+gem "rswag"
+gem "rswag-api"
+gem "rswag-ui"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-
   gem "brakeman", require: false
-
   gem "rubocop-rails-omakase", require: false
+  gem "rswag-specs"
 end
+
+group :test do 
+  gem 'rspec-rails'
+  gem 'webmock'
+end  

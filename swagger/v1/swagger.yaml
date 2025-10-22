@@ -1,0 +1,53 @@
+---
+swagger: '2.0'
+info:
+  title: API V1
+  version: v1
+paths:
+  "/complexity-score":
+    post:
+      summary: Create ComplexityResult
+      tags:
+      - ComplexityResults
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: payload
+        in: body
+        schema:
+          type: object
+          properties:
+            words:
+              type: array
+              items:
+                type: string
+          required:
+          - words
+      responses:
+        '200':
+          description: job created
+  "/complexity-score/{job_id}":
+    parameters:
+    - name: job_id
+      in: path
+      type: string
+      description: Job ID
+      required: true
+    get:
+      summary: Show ComplexityResult
+      tags:
+      - ComplexityResults
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: complexity result found
+        '404':
+          description: not found
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: 127.0.0.1:3001

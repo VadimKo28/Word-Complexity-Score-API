@@ -1,7 +1,7 @@
 module ErrorHandler
   extend ActiveSupport::Concern
   
-   included do
+  included do
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
     rescue_from ActionController::ParameterMissing, with: :render_bad_request
   end
