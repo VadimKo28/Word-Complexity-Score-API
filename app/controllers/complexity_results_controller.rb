@@ -4,16 +4,20 @@ class ComplexityResultsController < ApplicationController
 
     complexity_result = ComplexityResult.create(job_id: SecureRandom.uuid)
 
-    CalculateComplexityJob.perform(words, complexity_result.id)
+    CalculateComplexityJob.perform_later(words, complexity_result.id)
     
     render json: { job_id: complexity_result.job_id }, status: :ok
-  rescue ActionController::ParameterMissing => e
-    render json: { error: e.message }, status: :bad_request
+  end
+
+  def show
+    complexity_result = ComplexityResult.find_by!(job_id: params[:job_id])
+
+    render json: { status: complexity_result.status, result: complexity_result.result }, status: :ok
   end
 
   private 
 
   def words_param
-    words = params.require(:words)
+    params.require(:words)
   end
 end
